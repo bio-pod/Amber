@@ -21,6 +21,10 @@ if [ ! -d "${current_dir}" ]; then
     exit
 fi
 
+# Pulling the Amber image
+echo -e "$CNT - Pulling Amber from Docker Hub..."
+docker pull biopod/amber:22.22
+
 # give the user an option to exit setup
 install_path=/usr/local/bin/
 echo -e "$CAT - Amber will be installed to the ${install_path}"
@@ -28,7 +32,7 @@ read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the setup (y
 if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
     echo -e "$CNT - Setup starting..."
 else
-    echo -e "$CNT - You need to manually add the executables (amber,amber-env,amber-run) to your PATH."
+    echo -e "$CWR - You need to manually add the executables (amber,amber-env,amber-run) to your PATH."
     exit
 fi
 
