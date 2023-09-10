@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+image_tag="biopod/amber:22.22"
+
+echo "Testing ${image_tag}..."
+echo "Results will be saved in current dir -> $(pwd)"
+# --cap-add=SYS_PTRACE for fixing mpi error in docker container running on some machine
+# error looks like: [730d2d54ede3:01733] Read -1, expected 5352, errno = 1
+# discussed at here: https://github.com/open-mpi/ompi/issues/4948
+docker run --cap-add=SYS_PTRACE --rm -it --gpus all \
+       --mount type=bind,source=$(realpath $(pwd)),target=/mnt \
+       ${image_tag} \
+       /bin/bash -c "cd /app && bash test.sh && cp -ra /app/amber22/logs /mnt/biopod.amber.22.22.test/ && chown -R $(id -u):$(id -g) /mnt/biopod.amber.22.22.test"
+

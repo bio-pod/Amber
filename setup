@@ -32,13 +32,13 @@ read -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the setup (y
 if [[ $CONTINST == "Y" || $CONTINST == "y" ]]; then
     echo -e "$CNT - Setup starting..."
 else
-    echo -e "$CWR - You need to manually add the executables (amber-env,amber-run) to your PATH."
+    echo -e "$CWR - You need to manually add the executables (amber-env,amber-run,amber-test) to your PATH."
     exit
 fi
 
 # install amber to path
 echo -e "$CNT - Installing to ${install_path}"
-sudo cp -a ./bin/amber-env ./bin/amber-run ${install_path}
+sudo cp -a ./bin/amber-env ./bin/amber-run ./bin/amber-test ${install_path}
 
 # Script is done
 echo -e "$COK - Setup has completed!"
