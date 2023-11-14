@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-image_tag="biopod/amber:22.22"
+image_tag=biopod/amber:22.22
 
 echo "Testing ${image_tag}..."
 echo "Results will be saved in current dir -> $(pwd)"
